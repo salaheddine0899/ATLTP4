@@ -1,0 +1,25 @@
+-- @path JSP=/TP4/metamodels/JSP.ecore
+-- @path MCD=/TP4/metamodels/MCD.ecore
+
+module MCD2JSPTable;
+create OUT : JSP from IN : MCD;
+
+helper context String def:toCapitalize():String=
+	self.substring(1, 1).toUpper()+self.substring(2, self.size());
+
+rule Schema2JSPPage{
+	from s:MCD!Schema
+	to d:JSP!JSPPage(title <- s.name,elements <- s.tables)
+}
+
+rule Table2Table{
+	from s:MCD!Table
+	to d:JSP!Table(rows <- d2),
+	d2:JSP!Tr(heads <- s.columns)
+}
+
+rule Columns2HeadsAndColumns{
+	from s:MCD!Column
+	to d:JSP!Th(name <- 'th',text <-d2)
+	,d2:JSP!Text(value <- s.name)
+}

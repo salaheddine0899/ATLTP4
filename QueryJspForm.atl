@@ -1,0 +1,15 @@
+query queryJsp = JSP!JSPPage.allInstances()-> 
+		select(sh | sh.oclIsTypeOf(JSP!JSPPage)) -> 
+		collect(j | j.toJspCode().writeTo('TP4/jsp/'+j.title+'Form.html'));
+
+helper context JSP!JSPPage def:toJspCode():String=
+	'<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">\n'
+   +'<html>\n<body>\n<h1>'
+	+self.title+'</h1>\n<br/>'+
+	self.elements->iterate(form;f_var:String=''|f_var+'<h1>'+form.name+'</h1><br>'+'<form '+
+	form.attributes->iterate(att;a_var:String=''|a_var+att.name+'='+'"'+att.value+'" ')+'>\n'+
+	form.inputs->iterate(ch;c_var:String=''|c_var+'<'+ch.name+
+	ch.attributes->iterate(att;a_var:String=''|a_var+' '+att.name+'='+'"'+att.value+'" ')+'/><br>\n')+
+	'<br><button type="submit">send</button></form>\n')+
+	'</body>\n</html>';

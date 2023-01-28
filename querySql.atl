@@ -1,0 +1,31 @@
+query MCD2SQL =
+
+	MCD!Schema.allInstances()-> 
+		select(sh | sh.oclIsTypeOf(MCD!Schema)) -> 
+		collect(a | a.toSQLCode().writeTo('TP4/sql/'+a.name+'.sql'));
+		
+helper context MCD!Schema def:toSQLCode(): String = 
+	-- create the schema 
+	'\n  CREATE USER commercial_admin IDENTIFIED BY pAssw@rd;   \n' +
+	'GRANT CONNECT, RESOURCE TO commercial_admin; \n\n' +
+	'\n CREATE DATABASE IF NOT EXISTS ' + self.name + ' ; \n\n USE ' + self.name + ' ; \n' + 
+	
+	-- create tables for each table 
+	
+self.tables->iterate(tab; t_var: String = '' | t_var + '\n CREATE TABLE ' + tab.name + '( \n' +
+	tab.columns->iterate(col; var: String = '' | 
+		if(col.oclIsTypeOf(MCD!Column))
+			then var + ' ' + col.name + ' ' + col.type + ',\n'
+		else 
+			if(col.oclIsTypeOf(MCD!PK))
+				then var + ' ' + col.name + ' ' + col.type + ' PRIMARY KEY NOT NULL, \n '
+			else 
+				if(col.oclIsTypeOf(MCD!FK))
+					then var + ' ' + col.name + ' ' + col.type + ' FOREIGN KEY REFERENCES ' + col.reference.name + '(' + col.name + '), \n'
+				else 
+					''
+				endif
+			endif
+		endif	
+	) + ' \n );'
+	);
