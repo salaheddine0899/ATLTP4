@@ -14,7 +14,7 @@ rule Schema2JSPPage{
 
 rule Table2Form{
 	from s:MCD!Table
-	to d:JSP!Form(name<-s.name,inputs <- s.columns,attributes <-d2,attributes <- d.attributes.append(d3) ),
+	to d:JSP!Form(name<-'form',inputs <- s.columns,attributes <-d2,attributes <- d.attributes.append(d3),item <- s.name ),
 	d2:JSP!Attribute(name <- 'action',value <- '/add'+s.name.toCapitalize()),
 	d3:JSP!Attribute(name <- 'method',value <- 'post')
 }

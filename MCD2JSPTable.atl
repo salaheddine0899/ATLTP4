@@ -14,8 +14,8 @@ rule Schema2JSPPage{
 
 rule Table2Table{
 	from s:MCD!Table
-	to d:JSP!Table(rows <- d2),
-	d2:JSP!Tr(heads <- s.columns)
+	to d:JSP!Table(rows <- Sequence{d2},name <- 'table',item <- s.name+'s'),
+	d2:JSP!Tr(heads <- s.columns,name <- 'tr')
 }
 
 rule Columns2HeadsAndColumns{
