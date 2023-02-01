@@ -1,0 +1,16 @@
+query queryJSPTable  = JSP!JSPPage.allInstances()-> 
+		select(sh | sh.oclIsTypeOf(JSP!JSPPage)) -> 
+		collect(j | j.toJspCode().writeTo('TP4/jsp/'+j.title+'Table.jsp'));
+
+helper context JSP!JSPPage def:toJspCode():String=
+	'<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>\n'+
+	'<html>\n<body>\n<h1>'
+	+self.title+'</h1>\n<br/>\n'+
+	self.elements->iterate(table;t_var:String=''|t_var+'<h1>'+table.name+'</h1><br>\n'+'<table>\n'+
+	table.rows->iterate(row;r_var:String=''|r_var+'<tr>'+
+	row.heads->iterate(h;h_var:String=''|h_var+'<th>'+h.text.value+'</th>')+'</tr>'
+	+'<c:forEach items="${'+table.name+'s'+'}" var="'+table.name+'">\n<tr>\n'+
+	row.heads->iterate(h;h_var:String=''|h_var+'<td>${'+table.name+'.'+h.text.value+'}</td>\n')+'</tr>\n'+
+	'</c:forEach>')+'</table>')+
+	'\n</body>'+
+	'\n</html>';

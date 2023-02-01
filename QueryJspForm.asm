@@ -18,7 +18,7 @@
 		<constant value="TP4/jsp/"/>
 		<constant value="title"/>
 		<constant value="J.+(J):J"/>
-		<constant value="Form.html"/>
+		<constant value="Form.jsp"/>
 		<constant value="J.writeTo(J):J"/>
 		<constant value="1:18-1:29"/>
 		<constant value="1:18-1:44"/>
@@ -32,10 +32,10 @@
 		<constant value="3:48-3:49"/>
 		<constant value="3:48-3:55"/>
 		<constant value="3:37-3:55"/>
-		<constant value="3:56-3:67"/>
-		<constant value="3:37-3:67"/>
-		<constant value="3:15-3:68"/>
-		<constant value="1:18-3:69"/>
+		<constant value="3:56-3:66"/>
+		<constant value="3:37-3:66"/>
+		<constant value="3:15-3:67"/>
+		<constant value="1:18-3:68"/>
 		<constant value="sh"/>
 		<constant value="j"/>
 		<constant value="self"/>
@@ -109,15 +109,15 @@
 		<constant value="9:46-10:85"/>
 		<constant value="10:86-10:91"/>
 		<constant value="9:46-10:91"/>
-		<constant value="11:39-11:41"/>
+		<constant value="11:40-11:42"/>
 		<constant value="11:2-11:6"/>
 		<constant value="11:2-11:13"/>
-		<constant value="11:42-11:47"/>
-		<constant value="11:48-11:51"/>
-		<constant value="11:42-11:51"/>
-		<constant value="11:52-11:54"/>
-		<constant value="11:52-11:59"/>
-		<constant value="11:42-11:59"/>
+		<constant value="11:43-11:49"/>
+		<constant value="11:50-11:53"/>
+		<constant value="11:43-11:53"/>
+		<constant value="11:54-11:56"/>
+		<constant value="11:54-11:61"/>
+		<constant value="11:43-11:61"/>
 		<constant value="12:42-12:44"/>
 		<constant value="12:2-12:4"/>
 		<constant value="12:2-12:15"/>
@@ -137,9 +137,9 @@
 		<constant value="12:82-12:86"/>
 		<constant value="12:45-12:86"/>
 		<constant value="12:2-12:87"/>
-		<constant value="11:42-12:87"/>
+		<constant value="11:43-12:87"/>
 		<constant value="12:88-12:98"/>
-		<constant value="11:42-12:98"/>
+		<constant value="11:43-12:98"/>
 		<constant value="11:2-12:99"/>
 		<constant value="9:46-12:99"/>
 		<constant value="13:2-13:52"/>
@@ -151,7 +151,7 @@
 		<constant value="att"/>
 		<constant value="a_var"/>
 		<constant value="ch"/>
-		<constant value="c_var"/>
+		<constant value="ch_var"/>
 		<constant value="form"/>
 		<constant value="f_var"/>
 	</cp>

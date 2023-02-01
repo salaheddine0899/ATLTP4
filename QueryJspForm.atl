@@ -1,6 +1,6 @@
 query queryJsp = JSP!JSPPage.allInstances()-> 
 		select(sh | sh.oclIsTypeOf(JSP!JSPPage)) -> 
-		collect(j | j.toJspCode().writeTo('TP4/jsp/'+j.title+'Form.html'));
+		collect(j | j.toJspCode().writeTo('TP4/jsp/'+j.title+'Form.jsp'));
 
 helper context JSP!JSPPage def:toJspCode():String=
 	'<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>'
@@ -8,7 +8,7 @@ helper context JSP!JSPPage def:toJspCode():String=
 	+self.title+'</h1>\n<br/>'+
 	self.elements->iterate(form;f_var:String=''|f_var+'<h1>'+form.name+'</h1><br>'+'<form '+
 	form.attributes->iterate(att;a_var:String=''|a_var+att.name+'='+'"'+att.value+'" ')+'>\n'+
-	form.inputs->iterate(ch;c_var:String=''|c_var+'<'+ch.name+
+	form.inputs->iterate(ch;ch_var:String=''|ch_var+'<'+ch.name+
 	ch.attributes->iterate(att;a_var:String=''|a_var+' '+att.name+'='+'"'+att.value+'" ')+'/><br>\n')+
 	'<br><button type="submit">send</button></form>\n')+
 	'</body>\n</html>';

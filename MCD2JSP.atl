@@ -21,7 +21,7 @@ rule Table2Form{
 
 rule Column2Input{
 	from s:MCD!Column
-	to d:JSP!Input(name <- 'input',attributes <- d2,attributes <- d.attributes.append(d3),attributes <- d.attributes.append(d4)),
+	to d:JSP!Input(name <- 'input',attributes <- d2,attributes <-Sequence{d3,d4}),
 	d2:JSP!Attribute(name <- 'name',value <-s.name),
 	d3:JSP!Attribute(name <- 'type',value <- if(s.type='varchar(30)')then 'text' else 'number' endif),
 	d4:JSP!Attribute(name <- 'placeholder',value <-s.name)
